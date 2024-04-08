@@ -6,4 +6,4 @@ class SURGO_API FSurgoModule : public IModuleInterface
 {
 public:
 
-}
+};

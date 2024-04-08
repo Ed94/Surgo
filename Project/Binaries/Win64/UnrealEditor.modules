@@ -1,0 +1,8 @@
+{
+	"BuildId": "3e3997fc-e486-42c7-9be0-aac4c5fe0d4b",
+	"Modules": 
+	{
+		"Surgo": "UnrealEditor-Surgo.dll",
+		"SurgoEditor": "UnrealEditor-SurgoEditor.dll"
+	}
+}
