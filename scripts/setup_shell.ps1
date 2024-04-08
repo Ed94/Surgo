@@ -1,0 +1,1 @@
+set-alias -Name 'update_deps' -Value '.\update_deps.ps1'
