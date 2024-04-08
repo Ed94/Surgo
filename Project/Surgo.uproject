@@ -1,0 +1,20 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{1147A995-4B0F-DB0D-3269-56BB223613AD}",
+
+	"Category": "Game",
+	"Description": "Surgo",
+
+	"DisableEnginePluginsByDefault": true,
+	"Modules" : [],
+	"Plugins" : [],
+
+	"AdditionalPluginDirectories": [],
+	"AdditionalRootDirectories": [],
+
+	"TargetPlatforms": [
+		"Win64"
+	],
+	"PreBuildSteps": [],
+	"PostBuildSteps": []
+}
