@@ -1,17 +1,24 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "{1147A995-4B0F-DB0D-3269-56BB223613AD}",
-
+	"EngineAssociation": "{B4C3B326-47D3-EED1-8259-8885D212EA60}",
 	"Category": "Game",
 	"Description": "Surgo",
-
 	"DisableEnginePluginsByDefault": true,
-	"Modules" : [],
-	"Plugins" : [],
-
+	"Modules": [
+		{
+			"Name": "Surgo",
+			"Type": "Runtime",
+			"LoadingPhase": "PostConfigInit"
+		},
+		{
+			"Name": "SurgoEditor",
+			"Type": "Runtime",
+			"LoadingPhase": "PostDefault"
+		}
+	],
+	"Plugins": [],
 	"AdditionalPluginDirectories": [],
 	"AdditionalRootDirectories": [],
-
 	"TargetPlatforms": [
 		"Win64"
 	],
