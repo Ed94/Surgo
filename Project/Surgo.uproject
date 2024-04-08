@@ -12,7 +12,7 @@
 		},
 		{
 			"Name": "SurgoEditor",
-			"Type": "Runtime",
+			"Type": "Editor",
 			"LoadingPhase": "PostDefault"
 		}
 	],
