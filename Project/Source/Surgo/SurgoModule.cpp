@@ -1,3 +1,13 @@
 ﻿#include "SurgoModule.h"
 
-IMPLEMENT_MODULE(FSurgoModule, Surgo);
+IMPLEMENT_PRIMARY_GAME_MODULE(FSurgoModule, Surgo, Surgo);
+
+void FSurgoModule::StartupModule()
+{
+
+}
+
+void FSurgoModule::ShutdownModule()
+{
+
+}

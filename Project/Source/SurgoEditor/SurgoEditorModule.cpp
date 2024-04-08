@@ -1,3 +1,13 @@
 ﻿#include "SurgoEditorModule.h"
 
-IMPLEMENT_MODULE(FSurgoEditorModule, SurgoEditor);
+IMPLEMENT_GAME_MODULE(FSurgoEditorModule, SurgoEditor);
+
+void FSurgoEditorModule::StartupModule()
+{
+
+}
+
+void FSurgoEditorModule::ShutdownModule()
+{
+
+}
