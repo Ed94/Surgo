@@ -1,6 +1,10 @@
 ﻿.idea
+.vs
+.vscode
 Project/.vs
 Project/Intermediate
 Project/Saved/Logs
 Project/Surgo.sln
 Project/Saved/ShaderDebugInfo
+Project/Saved/Autosaves
+Project/Saved/Config/CrashReportClient

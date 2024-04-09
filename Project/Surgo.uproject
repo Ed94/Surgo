@@ -257,6 +257,34 @@
 		{
 			"Name": "ModelViewViewModel",
 			"Enabled": true
+		},
+		{
+			"Name": "SteamAudio",
+			"Enabled": true
+		},
+		{
+			"Name": "UE_ImGui",
+			"Enabled": true
+		},
+		{
+			"Name": "Cog",
+			"Enabled": true
+		},
+		{
+			"Name": "CogAbility",
+			"Enabled": true
+		},
+		{
+			"Name": "CogAI",
+			"Enabled": true
+		},
+		{
+			"Name": "CogAll",
+			"Enabled": true
+		},
+		{
+			"Name": "CogInput",
+			"Enabled": true
 		}
 	],
 	"TargetPlatforms": [

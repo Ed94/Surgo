@@ -11,7 +11,9 @@ public class SurgoEditor : ModuleRules
         });
         PrivateDependencyModuleNames.AddRange(new string[] {
             "Core",
-        });       
-    #endregion Engine 
+        });
+    #endregion Engine
+    
+		PublicIncludePathModuleNames.Add("Surgo");
     }
 }

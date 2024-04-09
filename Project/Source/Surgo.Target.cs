@@ -9,5 +9,7 @@ public class SurgoTarget : TargetRules
     {
         Type = TargetType.Game;
         DefaultBuildSettings = BuildSettingsVersion.Latest;
+        
+        ExtraModuleNames.Add("Surgo");
     }
 }

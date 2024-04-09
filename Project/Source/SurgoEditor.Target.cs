@@ -10,5 +10,8 @@ public class SurgoEditorTarget : TargetRules
         Type = TargetType.Editor;
         
         DefaultBuildSettings = BuildSettingsVersion.Latest;
+        
+		ExtraModuleNames.Add("Surgo");
+		ExtraModuleNames.Add("SurgoEditor");
     }
 }
