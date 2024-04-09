@@ -8,12 +8,12 @@
 		{
 			"Name": "Surgo",
 			"Type": "Runtime",
-			"LoadingPhase": "PostConfigInit"
+			"LoadingPhase": "Default"
 		},
 		{
 			"Name": "SurgoEditor",
 			"Type": "Editor",
-			"LoadingPhase": "PostDefault"
+			"LoadingPhase": "Default"
 		}
 	],
 	"Plugins": [

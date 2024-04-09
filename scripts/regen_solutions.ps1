@@ -8,7 +8,7 @@ $path_project = join-path $path_root 'Project'
 
 $surgo_uproject = join-path $path_project 'Surgo.uproject'
 
-$UBT = join-path $path_ue 'Engine\Binaries\DotNET\UnrealBuildTool\UnrealBuildTool.exe'
+$UBT = join-path $path_ue 'Engine\Binaries\Win64\UnrealEditor.exe'
 
 $fubt_project      = '-project'
 $fubt_projectfiles = '-projectfiles'
