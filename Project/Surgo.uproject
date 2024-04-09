@@ -263,10 +263,6 @@
 			"Enabled": true
 		},
 		{
-			"Name": "UE_ImGui",
-			"Enabled": true
-		},
-		{
 			"Name": "Cog",
 			"Enabled": true
 		},
@@ -279,11 +275,15 @@
 			"Enabled": true
 		},
 		{
+			"Name": "CogInput",
+			"Enabled": true
+		},
+		{
 			"Name": "CogAll",
 			"Enabled": true
 		},
 		{
-			"Name": "CogInput",
+			"Name": "GameplayAbilities",
 			"Enabled": true
 		}
 	],

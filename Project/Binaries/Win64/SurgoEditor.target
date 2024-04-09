@@ -5170,18 +5170,6 @@
 			"Type": "RequiredResource"
 		},
 		{
-			"Path": "$(EngineDir)/Plugins/Surgo/UE_ImGui/Binaries/Win64/UnrealEditor-UE_ImGui.dll",
-			"Type": "DynamicLibrary"
-		},
-		{
-			"Path": "$(EngineDir)/Plugins/Surgo/UE_ImGui/Binaries/Win64/UnrealEditor-UE_ImGui.pdb",
-			"Type": "SymbolFile"
-		},
-		{
-			"Path": "$(EngineDir)/Plugins/Surgo/UE_ImGui/Binaries/Win64/UnrealEditor.modules",
-			"Type": "RequiredResource"
-		},
-		{
 			"Path": "$(EngineDir)/Plugins/VirtualProduction/Takes/Binaries/Win64/UnrealEditor-CacheTrackRecorder.dll",
 			"Type": "DynamicLibrary"
 		},
@@ -28636,10 +28624,6 @@
 			"Type": "UFS"
 		},
 		{
-			"Path": "$(EngineDir)/Plugins/Surgo/UE_ImGui/UE_ImGui.uplugin",
-			"Type": "UFS"
-		},
-		{
 			"Path": "$(EngineDir)/Plugins/VirtualProduction/Takes/Takes.uplugin",
 			"Type": "UFS"
 		}
@@ -28718,7 +28702,6 @@
 		"StructUtils",
 		"Takes",
 		"TextureFormatOodle",
-		"UE_ImGui",
 		"VariantManager",
 		"VariantManagerContent",
 		"WaveTable",

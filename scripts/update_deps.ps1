@@ -322,6 +322,12 @@ function setup-cog
 }
 setup-cog
 
+function setup-tracy
+{
+	$url_ue_tracy = 'https://github.com/Nesquick0/TracyUnrealPlugin.git'
+}
+# setup_tracy
+
 & .\GenerateProjectFiles.bat
 
 pop-location # $path_ue
