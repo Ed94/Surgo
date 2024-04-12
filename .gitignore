@@ -21,3 +21,5 @@ Project/Build/Windows/FileOpenOrder
 Project/Saved/StagedBuilds
 Project/Binaries
 scripts/system_details.ini
+Project/Binaries/Win64/SurgoEditor.target
+Project/Binaries/Win64/UnrealEditor.modules
