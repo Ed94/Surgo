@@ -131,14 +131,14 @@ function Process-UnrealDeps
 	$setup_args += "$fgitdep_cache=$path_gitdeps_cache"
 	# $setup_args += $fgitdep_dryrun
 
-	$path_setup_log = 'setup_log.txt'
-	# & .\Setup.bat $setup_arg
-	& .\Setup.bat 
+	# $path_setup_log = 'setup_log.txt'
 	# $output = Start-Process -FilePath "cmd.exe" -ArgumentList "/c .\Setup.bat $setup_args" -Wait -PassThru -NoNewWindow -RedirectStandardOutput $path_setup_log
+	# & .\Setup.bat $setup_arg
+	& .\Setup.bat
 
 	# $path_templates = join-path $path_ue 'Templates'
 	# remove-item $path_templates -Recurse
-	'Deleted UE templates (grab them manually if want)'
+	# 'Deleted UE templates (grab them manually if want)'
 
 	write-host "Finished processing unreal deps`n"
 }
