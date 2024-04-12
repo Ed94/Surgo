@@ -20,3 +20,4 @@ Project/Build/Windows/FileOpenOrder
 *.target
 Project/Saved/StagedBuilds
 Project/Binaries
+scripts/system_details.ini
