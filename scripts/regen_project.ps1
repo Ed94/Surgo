@@ -16,9 +16,6 @@ $fubt_game         = '-game'
 $fubt_engine       = '-engine'
 $fubt_progress     = '-progress'
 
-$GenerateProjectFiles = join-path $path_ue 'GenerateProjectFiles.bat'
-& $GenerateProjectFiles
-
 $ubt_args  = @()
 $ubt_args += $fubt_projectfiles
 $ubt_args += "$fubt_project=$surgo_uproject"

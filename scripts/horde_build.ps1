@@ -16,13 +16,8 @@ $fubt_game         = '-game'
 $fubt_engine       = '-engine'
 $fubt_progress     = '-progress'
 
-$GenerateProjectFiles = join-path $path_ue 'GenerateProjectFiles.bat'
-& $GenerateProjectFiles
+$UAT = join-path $path_ue '\Engine\Build\BatchFiles\RunUAT.bat'
 
-$ubt_args  = @()
-$ubt_args += $fubt_projectfiles
-$ubt_args += "$fubt_project=$surgo_uproject"
-$ubt_args += $fubt_game
-$ubt_args += $fubt_engine
-$ubt_args += $fubt_progress
-& $UBT $ubt_args
+Push-Location $path_ueHordeServer
+& $UAT BuildGraph -Script="Engine/Source/Programs/Horde/BuildHorde.xml" -Target="Build HordeServer"
+Pop-Location

@@ -11,3 +11,12 @@ Project/Saved/Config/CrashReportClient
 Project/Saved/SourceControl
 Project/Saved/Crashes
 Project/Saved/Config/WindowsEditor/EditorPerProjectUserSettings.ini
+Project/Saved/Cooked
+Project/Build/Windows/FileOpenOrder/EditorOpenOrder.log
+Project/Saved/Shaders
+Project/Saved/MaterialStatsDebug
+Project/Saved/MaterialStats
+Project/Build/Windows/FileOpenOrder
+*.target
+Project/Saved/StagedBuilds
+Project/Binaries

@@ -125,18 +125,19 @@ function Process-UnrealDeps
 		$setup_args += "$fgitdep_exclude=$entry"
 
 		if (verify-path $entry) {
-			remove-item $entry -Recurse
+			# remove-item $entry -Recurse
 		}
 	}
 	$setup_args += "$fgitdep_cache=$path_gitdeps_cache"
 	# $setup_args += $fgitdep_dryrun
 
 	$path_setup_log = 'setup_log.txt'
-	& .\Setup.bat $setup_args
+	# & .\Setup.bat $setup_arg
+	& .\Setup.bat 
 	# $output = Start-Process -FilePath "cmd.exe" -ArgumentList "/c .\Setup.bat $setup_args" -Wait -PassThru -NoNewWindow -RedirectStandardOutput $path_setup_log
 
-	$path_templates = join-path $path_ue 'Templates'
-	remove-item $path_templates -Recurse
+	# $path_templates = join-path $path_ue 'Templates'
+	# remove-item $path_templates -Recurse
 	'Deleted UE templates (grab them manually if want)'
 
 	write-host "Finished processing unreal deps`n"
@@ -207,7 +208,7 @@ function setup-steamaudio
 		$path_steamaudio_unreal_SteamAudio = join-path $path_steamaudio_unreal 'unreal\SteamAudio'
 		# $ue_binaries_SteamFMODStudio = join-path $path_steamaudio_unreal 'FMODStudio'
 		# remove-item -Type Directory $ue_binaries_SteamFMODStudio -Recurse -Confirm:$false
-		move-item -Path $path_steamaudio_unreal_SteamAudio -Destination $ue_plugin_Steam -Force -Confirm:$false
+		move-item -Path $path_steamaudio_unreal_SteamAudio -Destination $ue_plugin_Steam -Confirm:$false
 		remove-item $path_steamaudio_unreal -Recurse -Confirm:$false
 		remove-item $path_steamaudio_zip             -Confirm:$false
 	}
@@ -225,7 +226,8 @@ function setup-imgui
 	$add_UnrealImGui      = $false
 	$add_UnrealImGuiTools = $false
 
-	if ($add_VesCodesImGui -and (-not (verify-git $ue_plugin_VesCodesImGui)))
+	# if ($add_VesCodesImGui -and (-not (verify-git $ue_plugin_VesCodesImGui)))
+	if ($add_VesCodesImGui)
 	{
 		write-host 'Grabbing VesCodes ImGui repo'
 		verify-path $ue_plugin_VesCodesImGui
@@ -245,7 +247,7 @@ function setup-imgui
 		$path_engine_thirdparty        = Join-Path $path_ue 'Engine/Source/Thirdparty'
 		$path_VescodesImGui_thirdparty = join-path $ue_plugin_VesCodesImGui 'Source/Thirdparty'
 
-		Move-Item -Path "$path_VescodesImGui_thirdparty\*" -Destination $path_engine_thirdparty
+		Move-Item -Path "$path_VescodesImGui_thirdparty\*" -Destination $path_engine_thirdparty -Confirm:$false
 		Remove-Item -Path $path_VescodesImGui_thirdparty -Recurse -Confirm:$false
 	}
 
@@ -315,7 +317,7 @@ function setup-cog
 		$url_Cog      = 'https://github.com/Ed94/Cog/releases/download/latest/Cog.zip'
 		$path_cog_zip = join-path $ue_plugins_surgo 'Cog.zip'
 
-		grab-zip $url_Cog $path_cog_zip $ue_plugins_surgo
+		grab-ip $url_Cog $path_cog_zip $ue_plugins_surgo
 		remove-item $path_cog_zip -Confirm:$false
 	}
 	write-host
@@ -324,6 +326,7 @@ setup-cog
 
 function setup-tracy
 {
+	# TODO(Ed): Eventually add
 	$url_ue_tracy = 'https://github.com/Nesquick0/TracyUnrealPlugin.git'
 }
 # setup_tracy
