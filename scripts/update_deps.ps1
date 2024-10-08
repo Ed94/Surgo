@@ -35,29 +35,30 @@ write-host
 
 $path_ue_git = join-path $path_ue '.git'
 # If its a clean project, need to do first-time setup
-if ((test-path $path_ue_git) -eq $false)
-{
+# if ((test-path $path_ue_git) -eq $true)
+# {
 	write-host 'UE not found, pulling...'
 
 	$url_ue_repo        = 'https://github.com/EpicGames/UnrealEngine.git'
 	$ue_branch_5_3      = '5.3'
 	$ue_branch_5_4      = '5.4'
+	$ue_branch_5_5      = '5.5'
 	$ue_branch_release  = 'release'
 	$ue_branch_main     = 'ue5-main'
 	$ue_origin_offical  = 'EpicGames'
 
-	$clone_ue = @()
-	$clone_ue += 'clone'
-	$clone_ue += $flag_progress
-	$clone_ue += @($flag_origin, $ue_origin_offical)
-	$clone_ue += @($flag_branch, $ue_branch_5_4)
-	$clone_ue += $url_ue_repo
-	$clone_ue += @($flag_commit_depth, $git_commit_depth)
-	$clone_ue += $flag_single_branch
-	$clone_ue += @($flag_jobs, $CoreCount_Physical)
-	$clone_ue += $flag_shallow_submodules
-	$clone_ue += $path_ue
-	invoke-git $clone_ue
+	$clone = @()
+	$clone += 'clone'
+	$clone += $flag_progress
+	$clone += @($flag_origin, $ue_origin_offical)
+	$clone += @($flag_branch, $ue_branch_5_5)
+	$clone += $url_ue_repo
+	$clone += @($flag_commit_depth, $git_commit_depth)
+	$clone += $flag_single_branch
+	$clone += @($flag_jobs, $CoreCount_Physical)
+	$clone += $flag_shallow_submodules
+	$clone += $path_ue
+	invoke-git $clone
 
 	$init_submodules = @()
 	$init_submodules += 'submodule'
@@ -70,17 +71,17 @@ if ((test-path $path_ue_git) -eq $false)
 	invoke-git $init_submodules
 
 	write-host "UE repo updated`n"
-}
-else {
-	write-host "Found existing UE repo, manage manually for updates`n"
-}
+# }
+# else {
+	# write-host "Found existing UE repo, manage manually for updates`n"
+# }
 
 function Process-UnrealDeps
 {
 	write-host 'Processing Unreal Deps...'
 
 	$fgitdep_cache      = '--cache'
-	$fgitdep_dryrun     = '--dry-runhttps://github.com/EpicGames/UnrealEngine/tree/5.3'
+	$fgitdep_dryrun     = '--dry-run'
 	$fgitdep_include    = '--include'
 	$fgitdep_exclude    = '--exclude'
 	$fgitdep_no_cache   = '--no-cache'
@@ -154,18 +155,18 @@ function setup-fmod
 
 	$url_fmod = 'https://github.com/fmod/fmod-for-unreal.git'
 
-	$clone_repo = @()
-	$clone_repo += 'clone'
-	$clone_repo += $flag_progress
-	$clone_repo += @($flag_origin, 'fmod')
-	$clone_repo += @($flag_branch, 'master')
-	$clone_repo += $url_steamaudio
-	$clone_repo += $flag_single_branch
-	$clone_repo += @($flag_jobs, $CoreCount_Physical)
-	$clone_repo += $ue_module_SteamAudio
-	invoke-git $clone_repo
+	$clone = @()
+	$clone += 'clone'
+	$clone += $flag_progress
+	$clone += @($flag_origin, 'fmod')
+	$clone += @($flag_branch, '2.03-UE5.4')
+	$clone += $url_fmod
+	$clone += $flag_single_branch
+	$clone += @($flag_jobs, $CoreCount_Physical)
+	$clone += $ue_module_FMODStudio
+	invoke-git $clone
 }
-# setup-fmod
+setup-fmod
 
 function setup-steamaudio
 {
@@ -184,20 +185,20 @@ function setup-steamaudio
 
 		$url_steamaudio = 'https://github.com/ValveSoftware/steam-audio.git'
 
-		$clone_repo = @()
-		$clone_repo += 'clone'
-		$clone_repo += $flag_progress
-		$clone_repo += @($flag_origin, 'ValveSoftware')
-		$clone_repo += @($flag_branch, 'master')
-		$clone_repo += $url_steamaudio
-		$clone_repo += $flag_single_branch
-		$clone_repo += @($flag_jobs, $CoreCount_Physical)
-		$clone_repo += $ue_plugin_SteamAudio
-		invoke-git $clone_repo
+		$clone = @()
+		$clone += 'clone'
+		$clone += $flag_progress
+		# $clone += @($flag_origin, 'ValveSoftware')
+		$clone += @($flag_branch, 'master')
+		$clone += $url_steamaudio
+		$clone += $flag_single_branch
+		$clone += @($flag_jobs, $CoreCount_Physical)
+		$clone += $ue_plugin_SteamAudio
+		invoke-git $clone
 	}
 	else {
 		write-host 'Grabbing Steam Audio zip'
-		remove-item -Path $ue_plugin_SteamAudio -Recurse -Confirm:$false
+		remove-item -Path $ue_plugin_SteamAudio -Recurse -Force
 
 		$url_steamaudio      = 'https://github.com/ValveSoftware/steam-audio/releases/download/v4.5.3/steamaudio_unreal_4.5.3.zip'
 		$path_steamaudio_zip = join-path $ue_plugin_Steam 'steamaudio_unreal_4.5.3.zip'
@@ -208,9 +209,9 @@ function setup-steamaudio
 		$path_steamaudio_unreal_SteamAudio = join-path $path_steamaudio_unreal 'unreal\SteamAudio'
 		# $ue_binaries_SteamFMODStudio = join-path $path_steamaudio_unreal 'FMODStudio'
 		# remove-item -Type Directory $ue_binaries_SteamFMODStudio -Recurse -Confirm:$false
-		move-item -Path $path_steamaudio_unreal_SteamAudio -Destination $ue_plugin_Steam -Confirm:$false
-		remove-item $path_steamaudio_unreal -Recurse -Confirm:$false
-		remove-item $path_steamaudio_zip             -Confirm:$false
+		move-item -Path $path_steamaudio_unreal_SteamAudio -Destination $ue_plugin_Steam -Force
+		# remove-item $path_steamaudio_unreal -Recurse -Force
+		# remove-item $path_steamaudio_zip             -Force
 	}
 	write-host
 }
@@ -230,19 +231,20 @@ function setup-imgui
 	if ($add_VesCodesImGui)
 	{
 		write-host 'Grabbing VesCodes ImGui repo'
+		if (verify-git $ue_plugin_VesCodesImGui) {return}
 		verify-path $ue_plugin_VesCodesImGui
 		$url_VesCodesImGui = 'https://github.com/Ed94/UE_ImGui.git'
 
-		$clone_imgui = @()
-		$clone_imgui += 'clone'
-		$clone_imgui += $flag_progress
-		$clone_imgui += @($flag_origin, 'Ed94')
-		$clone_imgui += @($flag_branch, 'Main')
-		$clone_imgui += $url_VesCodesImGui
-		$clone_imgui += $flag_single_branch
-		$clone_imgui += @($flag_jobs, $CoreCount_Physical)
-		$clone_imgui += $ue_plugin_VesCodesImGui
-		invoke-git $clone_imgui
+		$clone = @()
+		$clone += 'clone'
+		$clone += $flag_progress
+		# $clone += @($flag_origin, 'Ed94')
+		$clone += @($flag_branch, 'Main')
+		$clone += $url_VesCodesImGui
+		$clone += $flag_single_branch
+		$clone += @($flag_jobs, $CoreCount_Physical)
+		$clone += $ue_plugin_VesCodesImGui
+		invoke-git $clone
 
 		$path_engine_thirdparty        = Join-Path $path_ue 'Engine/Source/Thirdparty'
 		$path_VescodesImGui_thirdparty = join-path $ue_plugin_VesCodesImGui 'Source/Thirdparty'
@@ -254,37 +256,39 @@ function setup-imgui
 	if ($add_UnrealImGui -and (-not (verify-git $ue_plugin_ImGui)))
 	{
 		write-host 'Grabbing UnrealImGui repo'
+		if (verify-git $ue_plugin_ImGui) {return}
 		verify-path $ue_plugin_ImGui
 		$url_UnrealImGui = 'https://github.com/Ed94/UnrealImGui.git'
 
-		$clone_imgui = @()
-		$clone_imgui += 'clone'
-		$clone_imgui += $flag_progress
-		$clone_imgui += @($flag_origin, 'Ed94')
-		$clone_imgui += @($flag_branch, 'master')
-		$clone_imgui += $url_UnrealImGui
-		$clone_imgui += $flag_single_branch
-		$clone_imgui += @($flag_jobs, $CoreCount_Physical)
-		$clone_imgui += $ue_plugin_ImGui
-		invoke-git $clone_imgui
+		$clone = @()
+		$clone += 'clone'
+		$clone += $flag_progress
+		# $clone += @($flag_origin, 'Ed94')
+		$clone += @($flag_branch, 'master')
+		$clone += $url_UnrealImGui
+		$clone += $flag_single_branch
+		$clone += @($flag_jobs, $CoreCount_Physical)
+		$clone += $ue_plugin_ImGui
+		invoke-git $clone
 	}
 
 	if ($add_UnrealImGuiTools -and (-not (verify-git $ue_plugin_ImGuiTools)))
 	{
 		write-host 'Grabbing UnrealImGuiTools repo'
+		if (verify-git $ue_plugin_ImGuiTools) {return}
 		verify-path $ue_plugin_ImGuiTools
 		$url_UnrealImGuiTools = 'https://github.com/nakdeyes/UnrealImGuiTools.git'
 
-		$clone_imguitools = @()
-		$clone_imguitools += 'clone'
-		$clone_imguitools += $flag_progress
-		$clone_imguitools += @($flag_origin, 'nakdeyes')
-		$clone_imguitools += @($flag_branch, 'main')
-		$clone_imguitools += $url_UnrealImGuiTools
-		$clone_imguitools += $flag_single_branch
-		$clone_imguitools += @($flag_jobs, $CoreCount_Physical)
-		$clone_imguitools += $ue_plugin_ImGuiTools
-		invoke-git $clone_imguitools
+		$clone = @()
+		$clone += 'clone'
+		$clone += $flag_progress
+		# $clone += @($flag_origin, 'nakdeyes')
+		$clone += @($flag_branch, 'main')
+		$clone += $url_UnrealImGuiTools
+		$clone += $flag_single_branch
+		$clone += @($flag_jobs, $CoreCount_Physical)
+		$clone += $ue_plugin_ImGuiTools
+		invoke-git $clone
 	}
 
 	write-host
@@ -301,35 +305,67 @@ function setup-cog
 
 		$url_Cog = 'https://github.com/arnaud-jamin/Cog.git'
 
-		$clone_cog = @()
-		$clone_cog += 'clone'
-		$clone_cog += $flag_progress
-		$clone_cog += @($flag_origin, 'arnaud-jamin')
-		$clone_cog += @($flag_branch, 'main')
-		$clone_cog += $url_Cog
-		$clone_cog += $flag_single_branch
-		$clone_cog += @($flag_jobs, $CoreCount_Physical)
-		$clone_cog += $ue_plugin_Cog
-		invoke-git $clone_cog
+		$clone = @()
+		$clone += 'clone'
+		$clone += $flag_progress
+		# $clone += @($flag_origin, 'arnaud-jamin')
+		$clone += @($flag_branch, 'main')
+		$clone += $url_Cog
+		$clone += $flag_single_branch
+		$clone += @($flag_jobs, $CoreCount_Physical)
+		$clone += $ue_plugin_Cog
+		invoke-git $clone
 	}
 	else {
 		write-host 'Grabbing Cog zip'
 		$url_Cog      = 'https://github.com/Ed94/Cog/releases/download/latest/Cog.zip'
 		$path_cog_zip = join-path $ue_plugins_surgo 'Cog.zip'
 
-		grab-ip $url_Cog $path_cog_zip $ue_plugins_surgo
-		remove-item $path_cog_zip -Confirm:$false
+		grab-zip $url_Cog $path_cog_zip $ue_plugins_surgo
+		remove-item $path_cog_zip -Force
 	}
 	write-host
 }
 setup-cog
 
-function setup-tracy
+function setup-optick
 {
-	# TODO(Ed): Eventually add
-	$url_ue_tracy = 'https://github.com/Nesquick0/TracyUnrealPlugin.git'
+
+	'Grabbing Optick zip'
+	$ue_plugin_optick = join-path $path_ue 'Engine\Plugins\Surgo'
+	$url_Optick       = 'https://github.com/bombomby/optick/releases/download/1.4.0.0/Optick_1.4.0_UE_Plugin_5.0.zip'
+	$path_optick_zip  = join-path $ue_plugin_optick 'Optick_1.4.0_UE_Plugin_5.0.zip'
+
+	# verify-path $path_optick_zip
+	grab-zip $url_Optick $path_optick_zip $ue_plugin_optick
+	remove-item $path_optick_zip -Recurse -Force
+	write-host
 }
-# setup_tracy
+# setup-optick
+
+function setup-git-plugin
+{
+	$ue_plugin_git = join-path $path_ue 'Engine/Plugins/Developer/GitSourceControl'
+	$url_git       = 'https://github.com/ProjectBorealis/UEGitPlugin.git'
+
+	write-host 'Grabbing git-plugin repo'
+	if (verify-git $ue_plugin_git) {return}
+	verify-path $ue_plugin_git
+
+	remove-item -Path "$ue_plugin_git\*" -Recurse -Force
+
+	$clone = @()
+	$clone += 'clone'
+	$clone += $flag_progress
+	# $clone_git += @($flag_origin, 'ProjectBorealis')
+	$clone += @($flag_branch, 'dev')
+	$clone += $url_git
+	$clone += $flag_single_branch
+	$clone += @($flag_jobs, $CoreCount_Physical)
+	$clone += $ue_plugin_git
+	invoke-git $clone
+}
+setup-git-plugin
 
 & .\GenerateProjectFiles.bat
 

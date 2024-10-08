@@ -47,5 +47,5 @@ function verify-path { param( $path )
 
 function grab-zip { param( $url, $path_file, $path_dst )
 	Invoke-WebRequest -Uri  $url       -OutFile         $path_file
-	Expand-Archive    -Path $path_file -DestinationPath $path_dst -Confirm:$false
+	Expand-Archive    -Path $path_file -DestinationPath $path_dst -Force
 }
