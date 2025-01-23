@@ -35,8 +35,8 @@ write-host
 
 $path_ue_git = join-path $path_ue '.git'
 # If its a clean project, need to do first-time setup
-# if ((test-path $path_ue_git) -eq $true)
-# {
+if ((test-path $path_ue_git) -eq $true)
+{
 	write-host 'UE not found, pulling...'
 
 	$url_ue_repo        = 'https://github.com/EpicGames/UnrealEngine.git'
@@ -71,10 +71,10 @@ $path_ue_git = join-path $path_ue '.git'
 	invoke-git $init_submodules
 
 	write-host "UE repo updated`n"
-# }
-# else {
-	# write-host "Found existing UE repo, manage manually for updates`n"
-# }
+}
+else {
+	write-host "Found existing UE repo, manage manually for updates`n"
+}
 
 function Process-UnrealDeps
 {
